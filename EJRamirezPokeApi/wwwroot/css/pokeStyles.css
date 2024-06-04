@@ -1,0 +1,426 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+}
+
+
+body {
+}
+
+
+.containerHeader {
+    width: 85%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: 50px auto 10px auto;
+    padding: 15px;
+    border-bottom: 1px solid #f00;
+}
+
+
+.logoPokemon {
+    width: 40px;
+    height: 40px;
+}
+
+h3 {
+    margin-top: 15px;
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 20px;
+}
+
+
+.containerInput {
+    position: relative;
+    gap: 5px;
+}
+
+
+.inp {
+    border: 1px solid #808080;
+    padding: 10px 20px 10px 45px;
+    border-radius: 9px;
+    width: 250px;
+    transition: .2s;
+}
+
+    .inp + i {
+        position: absolute;
+        left: 15px;
+        font-size: 20px;
+        top: 15px;
+        color: #808080;
+        pointer-events: none;
+        transition: .2s;
+    }
+
+.labelHolder {
+    position: absolute;
+    left: 25px;
+    top: -12px;
+    padding: 0 8px;
+    font-size: 15px;
+    color: #808080;
+    background-color: #fff;
+    pointer-events: none;
+    transition: .2s;
+}
+
+
+.inp:focus {
+    box-shadow: 0 0 3px 0px blue;
+    border-color: blue;
+}
+
+    .inp:focus + i,
+    .labelHolder.lblFocus {
+        color: blue;
+    }
+
+
+.containerInput button {
+    border-radius: 9px;
+    border: none;
+    color: white;
+    background-color: #002fe8;
+    padding: 9px;
+}
+
+.containerInput button:hover {
+    background-color: #1041ff;
+}
+
+    .containerInput button:active {
+        animation: activ .2s ease-in-out;
+    }
+
+@keyframes activ{
+    0%{
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.025);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
+#numberRegisters {
+    width: 250px;
+    padding: 10px 20px;
+    border: 1px solid #808080;
+    border-radius: 9px;
+    transition: .2s;
+    background-color: transparent;
+}
+
+
+#typeRegisters {
+    width: 250px;
+    padding: 10px 20px;
+    border: 1px solid #808080;
+    border-radius: 9px;
+    transition: .2s;
+    background-color: transparent;
+}
+
+
+
+
+
+.containerCards {
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 70px auto;
+    gap: 50px 20px;
+}
+
+
+.card {
+    position: relative;
+    width: 250px;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 30px;
+    border-radius: 9px;
+    background: none;
+    box-shadow: 0 0 2px 0 #8080806a;
+    transition: box-shadow .2s, transform .2s, background .5s;
+}
+
+
+    .card:hover {
+        box-shadow: 2px 4px 5px 2px #8080806a;
+        transform: translateY(-10px);
+    }
+
+    .card img {
+        width: 160px;
+        height: 160px;
+        transition: transform .3s, filter .3s;
+        margin: 10px auto;
+        position: absolute;
+        top: 10px;
+        left: 20%;
+    }
+
+    .card:hover img {
+        transform: translateY(-50px) rotate(-5deg) scale(1.180);
+        filter: drop-shadow(0px 15px 5px #808080c0);
+    }
+
+    .card:hover .namePoke {
+        transform: translateY(30px);
+    }
+
+    .card:hover .btnPlus {
+        transform: scale(1.2) translateY(-20px);
+    }
+
+    .card .namePoke {
+        text-align: center;
+        font-family: "Press Start 2P", system-ui;
+        font-weight: 900;
+        font-style: normal;
+        font-size: 18px;
+        margin: 90px auto;
+        color: yellow;
+        text-shadow: 1px 1px 2px blue, 0 0 6px blue, 0 0 1em blue;
+        transition: transform .3s;
+        transform: translateY(70px);
+    }
+
+
+.btnPlus {
+    margin: auto;
+    padding: 10px;
+    color: white;
+    background-color: red;
+    border: 3px solid #000000;
+    font-weight: 600;
+    border-radius: 9px;
+    width: 80%;
+    transition: transform .3s, background-color .2s;
+}
+
+
+    .btnPlus:hover {
+        background-color: #f93535;
+    }
+
+
+.cardBlue:hover {
+    background: rgb(2,0,36);
+    background: linear-gradient(180deg, rgb(5, 0, 91, 0) 0%, rgb(5, 0, 91, 0.1612977954853817) 68%, rgb(5, 0, 91, 0.6514938739167542) 100%);
+}
+
+.cardRed:hover {
+    background: linear-gradient(180deg, rgb(5, 0, 91, 0) 0%, rgb(5, 0, 91, 0.1612977954853817) 68%, rgb(5, 0, 91, 0.6514938739167542) 100%);
+}
+
+.cardGreen:hover {
+    background: rgb(90, 21, 164);
+    background: linear-gradient(180deg, rgba(2,0,36,0) 0%, rgba(20,121,9,0.1612977954853817) 68%, rgba(0,175,5,0.6514938739167542) 100%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.containerFooter {
+    width: 85%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px auto;
+    padding: 15px;
+    border-top: 1px solid #f00;
+    display: none;
+}
+
+.containerPaginador {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.btnPage {
+    padding: 8px 25px;
+    border-radius: 9px;
+    background-color: #011985;
+    color: white;
+    font-weight: 600;
+    transition: background-color .1s;
+}
+
+    .btnPage:hover {
+        background-color: #0624ac;
+    }
+
+
+
+.containerPaginas {
+    display: flex;
+    width: 55%;
+    padding: 8px 25px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+}
+
+.page {
+    display: block;
+    padding: 8px 10px;
+    border: 1px solid #808080;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color .1s, color .1s;
+    cursor: pointer;
+}
+
+    .page:hover {
+        background-color: #4566fc91;
+    }
+
+    .page.pageActive {
+        background-color: #0624ac;
+        color: aliceblue;
+        font-weight: 900;
+    }
+
+
+.pageInOut {
+    display: block;
+    padding: 8px 20px;
+    border: 2px solid #0624ac;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color .1s, color .1s;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+    .pageInOut:hover {
+        background-color: #4566fc91;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Modal */
+
+#exampleModalLabel {
+    font-family: "Press Start 2P", system-ui;
+    font-weight: 900;
+    font-style: normal;
+    font-size: 18px;
+    color: yellow;
+    text-shadow: 1px 1px 2px blue, 0 0 6px blue, 0 0 1em blue;
+}
+
+
+#modalHeader{
+    background-color: red;
+}
+
+
+.containerBodyModal{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.imgPokemon {
+    width: 270px;
+    height: 270px;
+    margin: 10px auto;
+    filter: drop-shadow(0px 15px 5px #808080c0);
+}
+
+.containerInfoPokemon {
+    width: 65%;
+    height: 290px;
+    overflow-y: scroll;
+    padding: 20px;
+}
+
+
+progress{
+    width: 100%;
+    padding: 10px;
+    color: aqua;
+    
+}
+
+
+
+
+
+
+
+.prueba{
+    color: #21fffc73;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
