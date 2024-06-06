@@ -59,6 +59,34 @@ const countRegisters = d.getElementById("countRegisters")
 
 
 
+const colorsByType = {
+    normal: "rgb(5, 0, 91",
+    fighting: "rgb(183, 7, 7",
+    flying: "rgb(169, 240, 247",
+    poison: "rgb(0, 83, 11",
+    ground: "rgb(91, 67, 1",
+    rock: "rgb(43, 32, 1",
+    bug: "rgb(189, 255, 66",
+    ghost: "rgb(166, 191, 212",
+    steel: "rgb(139, 139, 139",
+    fire: "rgb(228, 60, 6",
+    water: "rgb(11, 224, 216",
+    grass: "rgb(63, 193, 16",
+    electric: "rgb(236, 227, 19",
+    psychic: "rgb(161, 19, 236",
+    ice: "rgb(13, 141, 198",
+    dragon: "rgb(255, 32, 32",
+    dark: "rgb(24, 19, 19",
+    fairy: "rgb(253, 0, 186",
+    stellar: "rgb(0, 255, 246",
+    unknown: "rgb(152, 11, 56",
+    shadow: "rgb(90, 21, 164"
+}
+
+
+
+
+
 inputSearch.addEventListener("keyup", (e) => {
     if (e.key == 'Enter') btnSearch.click()
 })
@@ -222,30 +250,6 @@ const GetAllPokesByType = async (urlPT) => {
 
 
 
-
-const colorsByType = {
-    normal: "rgb(5, 0, 91",
-    fighting: "rgb(183, 7, 7",
-    flying: "rgb(169, 240, 247",
-    poison: "rgb(0, 83, 11",
-    ground: "rgb(91, 67, 1",
-    rock: "rgb(43, 32, 1",
-    bug: "rgb(189, 255, 66",
-    ghost: "rgb(166, 191, 212",
-    steel: "rgb(139, 139, 139",
-    fire: "rgb(228, 60, 6",
-    water: "rgb(11, 224, 216",
-    grass: "rgb(63, 193, 16",
-    electric: "rgb(236, 227, 19",
-    psychic: "rgb(161, 19, 236",
-    ice: "rgb(13, 141, 198",
-    dragon: "rgb(255, 32, 32",
-    dark: "rgb(24, 19, 19",
-    fairy: "rgb(253, 0, 186",
-    stellar: "rgb(0, 255, 246",
-    unknown: "rgb(152, 11, 56",
-    shadow: "rgb(90, 21, 164"
-}
 
 
 
@@ -504,7 +508,34 @@ const GetByIdPokeApi = async (idPokemon) => {
 
         imgPokemon.src = responseGBIJson.fotoPokemon
 
-        d.getElementById("pTipos").innerHTML = `<b>Tipos: </b> ${responseGBIJson.typesString}`
+        //d.getElementById("pTipos").innerHTML = `<b>Tipos: </b> ${responseGBIJson.typesString}`
+
+        d.getElementById("pTipos").innerHTML = `<b>Tipos: </b>`
+
+
+        responseGBIJson.types.forEach(tipo => {
+
+            const btnType = d.createElement("button")
+
+            btnType.classList.add("btnType")
+
+            btnType.dataset.urltipo = tipo.url
+
+            btnType.dataset.ntipo = tipo.nameType
+
+            btnType.textContent = tipo.nameType
+
+            let color = tipo.nameType.toLowerCase()
+
+
+            btnType.style.backgroundColor = `${colorsByType[color]})` 
+
+           
+
+            d.getElementById("pTipos").appendChild(btnType)
+
+        })
+
 
 
         responseGBIJson.stats.forEach(stat => {
@@ -518,13 +549,11 @@ const GetByIdPokeApi = async (idPokemon) => {
 
             const progressInfo = d.createElement("progress")
 
-           
-
-            progressInfo.style.color = `${colorsByType[responseGBIJson.types[0].nameType]})`
-
             progressInfo.max = 100
 
             progressInfo.value = stat.base_stat
+
+            progressInfo.style.accentColor = `${colorsByType[responseGBIJson.types[0].nameType.toLowerCase()]})`
 
             document.getElementById("containerInfoPokemon").appendChild(progressInfo)
 
@@ -537,6 +566,49 @@ const GetByIdPokeApi = async (idPokemon) => {
 
 }
 
+
+
+const parrafoTiposPokemon = d.getElementById("pTipos")
+
+parrafoTiposPokemon.addEventListener("click", async (e) => {
+    if (e.target.tagName == 'BUTTON') {
+
+        if (banderaGetAll) {
+
+            banderaGetAll = false
+
+            let nombreTipo = e.target.dataset.ntipo
+
+            e.target.innerHTML = `<div class="spinner-border text-warning" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>`
+
+
+            let url = e.target.dataset.urltipo
+
+            typeRegisters.value = url
+
+            if (typeRegisters.value == "") {
+                await GetAllPokeApi(1)
+            } else {
+                d.getElementById("numberRegisters").style.display = "none"
+                d.getElementById("containerInput").style.display = "none"
+                await GetAllPokesByType(url)
+            }
+
+
+            e.target.innerText = nombreTipo
+
+            $('#exampleModal').modal('hide');
+
+            banderaGetAll = true
+
+        } else {
+            alert("Servicio en proceso, espere porfavor")
+        }
+
+    } 
+})
 
 
 

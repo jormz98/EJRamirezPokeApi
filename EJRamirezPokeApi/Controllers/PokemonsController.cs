@@ -167,6 +167,7 @@ namespace EJRamirezPokeApi.Controllers
                         Types types = new Types();
 
                         types.nameType = tp["type"]["name"];
+                        types.url = tp["type"]["url"];
 
                         types.nameType = char.ToUpper(types.nameType[0]) + types.nameType.Substring(1);
                         
