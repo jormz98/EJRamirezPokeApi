@@ -139,7 +139,7 @@ typeRegisters.addEventListener("change", async (e) => {
             await GetAllPokeApi(1)
         } else {
             d.getElementById("numberRegisters").style.display = "none"
-            d.getElementById("containerInput").style.display = "none"
+            //d.getElementById("containerInput").style.display = "none"
             await GetAllPokesByType(e.target.value)
         }
 
@@ -256,7 +256,7 @@ const GetAllPokesByType = async (urlPT) => {
 const GetAllPokeApi = async (nPagina) => {
 
     d.getElementById("numberRegisters").style.display = "block"
-    d.getElementById("containerInput").style.display = "flex"
+    //d.getElementById("containerInput").style.display = "flex"
 
 
     countRegisters.innerHTML = ""
@@ -302,7 +302,7 @@ const GetAllPokeApi = async (nPagina) => {
             let pokemonName = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
 
             cloneTmptCard.querySelector(".namePoke").textContent = pokemonName
-            cloneTmptCard.querySelector(".fotoPoke").src = pokemon.fotoPokemon
+            cloneTmptCard.querySelector(".fotoPoke").src = pokemon.fotoPokemon != null ? pokemon.fotoPokemon : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI0FHKKm3YXfkiunva6Nk9C-Jc5OrD_qMhrw&s"
             cloneTmptCard.querySelector(".fotoPoke").alt = pokemon.name
             cloneTmptCard.querySelector(".btnPlus").dataset.urlid = pokemon.url
 
@@ -474,7 +474,9 @@ GetAllPokeApi(paginaActual);
 
 
 
+const containerBodyModal = d.getElementById("containerBodyModal")
 
+const contentModal = d.getElementById("contentmodal")
 
 const containerInfoPokemon = d.querySelector(".containerInfoPokemon")
 
@@ -485,11 +487,18 @@ const imgPokemon = d.getElementById("imgPokemon")
 //const containerInfoPokemon = d.getElementById("containerInfoPokemon")
 
 
+const containerPagImages = d.getElementById("containerPagImages")
+
+
 
 const GetByIdPokeApi = async (idPokemon) => {
 
 
     document.getElementById("containerInfoPokemon").innerHTML = ""
+
+    containerPagImages.innerHTML = ""
+
+    imgPokemon.src = ""
 
     const fdataGBId = new FormData()
 
@@ -506,7 +515,137 @@ const GetByIdPokeApi = async (idPokemon) => {
 
         exampleModalLabel.innerHTML = responseGBIJson.name.charAt(0).toUpperCase() + responseGBIJson.name.slice(1);
 
-        imgPokemon.src = responseGBIJson.fotoPokemon
+        imgPokemon.src = responseGBIJson.fotoPokemon != null ? responseGBIJson.fotoPokemon : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI0FHKKm3YXfkiunva6Nk9C-Jc5OrD_qMhrw&s"
+
+
+
+       
+        if (responseGBIJson.front_defaultGif != null) {
+            let labelImg = d.createElement("label")
+            labelImg.classList.add("lblImg")
+
+            let inputImg = d.createElement("input")
+            inputImg.classList.add("inpImg")
+            inputImg.type = "radio"
+            inputImg.name = "image"
+            inputImg.dataset.urlimage = responseGBIJson.front_defaultGif
+
+            labelImg.appendChild(inputImg)
+
+            let imageImg = d.createElement("img")
+            imageImg.src = responseGBIJson.front_defaultGif
+
+            labelImg.appendChild(imageImg)
+
+            containerPagImages.appendChild(labelImg)
+        }
+
+
+
+        if (responseGBIJson.back_defaultGif != null) {
+            let labelImg = d.createElement("label")
+            labelImg.classList.add("lblImg")
+
+            let inputImg = d.createElement("input")
+            inputImg.classList.add("inpImg")
+            inputImg.type = "radio"
+            inputImg.name = "image"
+            inputImg.dataset.urlimage = responseGBIJson.back_defaultGif
+
+            labelImg.appendChild(inputImg)
+
+            let imageImg = d.createElement("img")
+            imageImg.src = responseGBIJson.back_defaultGif
+
+            labelImg.appendChild(imageImg)
+
+            containerPagImages.appendChild(labelImg)
+        }
+
+
+        if (responseGBIJson.front_default3D != null) {
+            let labelImg = d.createElement("label")
+            labelImg.classList.add("lblImg")
+
+            let inputImg = d.createElement("input")
+            inputImg.classList.add("inpImg")
+            inputImg.type = "radio"
+            inputImg.name = "image"
+            inputImg.dataset.urlimage = responseGBIJson.front_default3D
+
+            labelImg.appendChild(inputImg)
+
+            let imageImg = d.createElement("img")
+            imageImg.src = responseGBIJson.front_default3D
+
+            labelImg.appendChild(imageImg)
+
+            containerPagImages.appendChild(labelImg)
+        }
+
+
+        if (responseGBIJson.front_defaultPng != null) {
+            let labelImg = d.createElement("label")
+            labelImg.classList.add("lblImg")
+
+            let inputImg = d.createElement("input")
+            inputImg.classList.add("inpImg")
+            inputImg.type = "radio"
+            inputImg.name = "image"
+            inputImg.dataset.urlimage = responseGBIJson.front_defaultPng
+
+            labelImg.appendChild(inputImg)
+
+            let imageImg = d.createElement("img")
+            imageImg.src = responseGBIJson.front_defaultPng
+
+            labelImg.appendChild(imageImg)
+
+            containerPagImages.appendChild(labelImg)
+        }
+
+
+        if (responseGBIJson.back_defaultPng != null) {
+            let labelImg = d.createElement("label")
+            labelImg.classList.add("lblImg")
+
+            let inputImg = d.createElement("input")
+            inputImg.classList.add("inpImg")
+            inputImg.type = "radio"
+            inputImg.name = "image"
+            inputImg.dataset.urlimage = responseGBIJson.back_defaultPng
+
+            labelImg.appendChild(inputImg)
+
+            let imageImg = d.createElement("img")
+            imageImg.src = responseGBIJson.back_defaultPng
+
+            labelImg.appendChild(imageImg)
+
+            containerPagImages.appendChild(labelImg)
+        }
+
+
+        if (responseGBIJson.fotoPokemon != null) {
+            let labelImg = d.createElement("label")
+            labelImg.classList.add("lblImg")
+
+            let inputImg = d.createElement("input")
+            inputImg.classList.add("inpImg")
+            inputImg.type = "radio"
+            inputImg.name = "image"
+            inputImg.dataset.urlimage = responseGBIJson.fotoPokemon
+
+            labelImg.appendChild(inputImg)
+
+            let imageImg = d.createElement("img")
+            imageImg.src = responseGBIJson.fotoPokemon
+
+            labelImg.appendChild(imageImg)
+
+            containerPagImages.appendChild(labelImg)
+        }
+
 
         //d.getElementById("pTipos").innerHTML = `<b>Tipos: </b> ${responseGBIJson.typesString}`
 
@@ -557,14 +696,31 @@ const GetByIdPokeApi = async (idPokemon) => {
 
             document.getElementById("containerInfoPokemon").appendChild(progressInfo)
 
-            document.getElementById("containerInfoPokemon").scrollTop = 999
+            document.getElementById("containerInfoPokemon").scrollTop = 0
         })
+
+
+
+        contentModal.style.background = `linear-gradient(180deg, ${colorsByType[responseGBIJson.types[0].nameType.toLowerCase()]}, 0) 0%, ${colorsByType[responseGBIJson.types[0].nameType.toLowerCase()]}, 0.1612977954853817) 68%, ${colorsByType[responseGBIJson.types[0].nameType.toLowerCase()]}, 0.6514938739167542) 100%)`
 
 
 
     }
 
 }
+
+
+
+
+containerPagImages.addEventListener("click", (e) => {
+    if (e.target.tagName == 'INPUT') {
+        let url = e.target.dataset.urlimage
+
+        imgPokemon.src = url
+
+    }
+})
+
 
 
 
@@ -592,7 +748,7 @@ parrafoTiposPokemon.addEventListener("click", async (e) => {
                 await GetAllPokeApi(1)
             } else {
                 d.getElementById("numberRegisters").style.display = "none"
-                d.getElementById("containerInput").style.display = "none"
+                //d.getElementById("containerInput").style.display = "none"
                 await GetAllPokesByType(url)
             }
 

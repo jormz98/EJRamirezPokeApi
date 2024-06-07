@@ -141,6 +141,17 @@ namespace EJRamirezPokeApi.Controllers
 
                     poke.name = pokemonResult["name"];
 
+
+                    poke.front_defaultGif = pokemonResult["sprites"]["other"]["showdown"]["front_default"].Value;
+
+                    poke.back_defaultGif = pokemonResult["sprites"]["other"]["showdown"]["back_default"].Value;
+
+                    poke.front_default3D = pokemonResult["sprites"]["other"]["home"]["front_default"].Value;
+
+                    poke.front_defaultPng = pokemonResult["sprites"]["front_default"].Value;
+
+                    poke.back_defaultPng = pokemonResult["sprites"]["back_default"].Value;
+
                     poke.fotoPokemon = pokemonResult["sprites"]["other"]["official-artwork"]["front_default"].Value;
 
                     poke.id = pokemonResult["id"];
