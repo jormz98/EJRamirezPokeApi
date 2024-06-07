@@ -139,6 +139,8 @@ typeRegisters.addEventListener("change", async (e) => {
             await GetAllPokeApi(1)
         } else {
             d.getElementById("numberRegisters").style.display = "none"
+            d.getElementById("labelNumberRegisters").style.display = "none"
+
             //d.getElementById("containerInput").style.display = "none"
             await GetAllPokesByType(e.target.value)
         }
@@ -256,6 +258,7 @@ const GetAllPokesByType = async (urlPT) => {
 const GetAllPokeApi = async (nPagina) => {
 
     d.getElementById("numberRegisters").style.display = "block"
+    d.getElementById("labelNumberRegisters").style.display = "block"
     //d.getElementById("containerInput").style.display = "flex"
 
 
@@ -748,6 +751,7 @@ parrafoTiposPokemon.addEventListener("click", async (e) => {
                 await GetAllPokeApi(1)
             } else {
                 d.getElementById("numberRegisters").style.display = "none"
+                d.getElementById("labelNumberRegisters").style.display = "none"
                 //d.getElementById("containerInput").style.display = "none"
                 await GetAllPokesByType(url)
             }

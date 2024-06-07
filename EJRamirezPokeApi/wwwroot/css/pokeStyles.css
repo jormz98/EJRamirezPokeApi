@@ -126,16 +126,53 @@ h3 {
     background-color: transparent;
 }
 
+    #numberRegisters:focus {
+        box-shadow: 0 0 3px 0px blue;
+        border-color: blue;
+    }
 
-#typeRegisters {
-    width: 250px;
-    padding: 10px 20px;
-    border: 1px solid #808080;
-    border-radius: 9px;
-    transition: .2s;
-    background-color: transparent;
+
+    #numberRegisters:focus + label {
+        color: blue; 
+    }
+
+
+.containerSelectRegisters {
+    position: relative;
 }
 
+    .containerSelectRegisters label {
+        position: absolute;
+        left: 25px;
+        top: -12px;
+        padding: 0 8px;
+        font-size: 15px;
+        color: #808080;
+        background-color: #fff;
+        pointer-events: none;
+        transition: .2s;
+    }
+
+
+    #typeRegisters {
+        width: 250px;
+        padding: 10px 20px;
+        border: 1px solid #808080;
+        border-radius: 9px;
+        transition: .2s;
+        background-color: transparent;
+    }
+
+
+        #typeRegisters:focus {
+            box-shadow: 0 0 3px 0px blue;
+            border-color: blue;
+        }
+
+
+            #typeRegisters:focus + label {
+                color: blue;
+            }
 
 
 
